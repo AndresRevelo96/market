@@ -1,5 +1,5 @@
 <?php
-    
+
     include("database.php");
 
     $firstname=$_POST['uname'];
@@ -11,7 +11,7 @@
 	$tmp_name = $_FILES["img"]["tmp_name"];
 	$status=FALSE;
 	$extarray= array("jpeg","jpg","png","gif");
-	
+
 	if($image == ""){
 		if($gender=='M'){
 		$photo = "photos/boy.png";
@@ -31,7 +31,7 @@
 			$status=TRUE;
 		}
 	}
-	
+
 	$pswd=password_hash($_POST['pswd'],PASSWORD_DEFAULT);
 	//1. Create query
 	$sql_validation = "SELECT * FROM usuarios WHERE email = '$email' OR cedula = $id";
@@ -42,7 +42,7 @@
 		$sql="INSERT INTO usuarios (firstname, lastname,cedula,gender,email, password,photo) VALUES('$firstname','$lastname',$id,'$gender','$email','$pswd','$photo')";
 		if ($conn->query($sql)===true) {
 			echo "<script language='javascript'>alert('Usuario regisrado con exito')</script>";
-			header("Refresh:0;url=login.php");    
+			header("Refresh:0;url=login.php");
 		}else{
 			echo "Error:".$sql."<br>".$conn->error;
 		}
@@ -54,7 +54,7 @@
 			echo "<script language='javascript'>alert('Usuario ya existe')</script>";
 			header("Refresh:0;url=signup.php");
 		}
-	}	
-	
+	}
+
 
 ?>
